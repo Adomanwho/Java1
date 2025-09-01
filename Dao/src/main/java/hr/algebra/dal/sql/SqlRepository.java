@@ -51,9 +51,7 @@ public class SqlRepository implements Repository {
     @Override
     public void createArticles(List<Article> articles) throws Exception {
         DataSource dataSource = DataSourceSingleton.getInstance();
-        System.out.println("Napravljen data Source.");
         try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall(CREATE_ARTICLE)) {
-            System.out.println("Postavljen connection. Ulaz u for loop.");
             for (Article article : articles) {
                 stmt.setString(TITLE, article.getTitle());
                 stmt.setString(LINK, article.getLink());

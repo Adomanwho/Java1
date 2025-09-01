@@ -9,6 +9,7 @@ import hr.algebra.dal.RepositoryFactory;
 import hr.algebra.model.Article;
 import hr.algebra.parsers.rss.ArticleParser;
 import hr.algebra.utilities.MessageUtils;
+import java.awt.EventQueue;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -82,17 +83,18 @@ public class UploadArticlesPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUploadArticlesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadArticlesActionPerformed
-        try {
-            List<Article> articles = ArticleParser.parse();
-            articles.forEach(article -> System.out.println(article.toString()));
-            System.out.println("Usli u create articles.");
-            repository.createArticles(articles);
-            loadModel();
-            
-        } catch (Exception ex) {
-            MessageUtils.showErrorMessage("Unrecoverable error", "Unable to upload articles");
-            System.exit(1);
-        }
+        
+        new Thread(() -> {
+            try {
+                List<Article> articles = ArticleParser.parse();
+                repository.createArticles(articles);
+                loadModel();
+
+            } catch (Exception ex) {
+                MessageUtils.showErrorMessage("Unrecoverable error", "Unable to upload articles");
+                System.exit(1);
+            }
+        }).start();
     }//GEN-LAST:event_btnUploadArticlesActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
@@ -121,9 +123,11 @@ public class UploadArticlesPanel extends javax.swing.JPanel {
     
     private void loadModel() throws Exception {
         List<Article> articles = repository.selectArticles();
-        articlesModel.clear();
-        articles.forEach(articlesModel::addElement);
-        lsArticles.setModel(articlesModel);
+        EventQueue.invokeLater(() -> {
+            articlesModel.clear();
+            articles.forEach(articlesModel::addElement);
+            lsArticles.setModel(articlesModel);
+        });
     }
 
 }

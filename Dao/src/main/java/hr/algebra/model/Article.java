@@ -84,7 +84,7 @@ public final class Article {
 
     @Override
     public String toString() {
-        return "Article{" + "id=" + id + ", title=" + title + ", link=" + link + ", description=" + description + ", picturePath=" + picturePath + ", publishedDate=" + publishedDate + '}';
+        return id + " - " + title;
     }
     
 }
