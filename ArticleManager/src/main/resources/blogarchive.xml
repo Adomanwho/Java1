@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<blogarchive>
+    <blogs>
+        <blog>
+            <title>New</title>
+            <blogtype>SCIENTIFIC</blogtype>
+            <publisheddate>2020-12-12</publisheddate>
+            <authors>
+                <author jmbag="123">
+                    <firstname>Daniel</firstname>
+                    <lastname>Bele</lastname>
+                </author>
+            </authors>
+        </blog>
+        <blog>
+            <title>Discovered SWAG</title>
+            <blogtype>PROFESSIONAL</blogtype>
+            <publisheddate>2025-09-03</publisheddate>
+            <authors>
+                <author jmbag="1337">
+                    <firstname>Andrej</firstname>
+                    <lastname>Kolega</lastname>
+                </author>
+            </authors>
+        </blog>
+    </blogs>
+</blogarchive>

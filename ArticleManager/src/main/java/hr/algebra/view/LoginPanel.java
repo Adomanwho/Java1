@@ -156,7 +156,7 @@ public class LoginPanel extends javax.swing.JPanel {
                     return;
                 }
                 case "c" -> {
-                    // otvori treci panel
+                    openFrame(new BlogManager());
                     return;
                 }
             }

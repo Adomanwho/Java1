@@ -1,6 +1,13 @@
-hr\algebra\dal\sql\SqlRepository.class
-hr\algebra\model\User.class
+hr\algebra\model\Author.class
 hr\algebra\dal\Repository.class
+hr\algebra\model\BlogArchive.class
+hr\algebra\model\AuthorTransferable.class
 hr\algebra\dal\RepositoryFactory.class
 hr\algebra\dal\sql\DataSourceSingleton.class
+hr\algebra\model\Blog.class
+hr\algebra\model\PublishedDateAdapter.class
+hr\algebra\dal\sql\SqlRepository.class
+hr\algebra\model\User.class
 hr\algebra\model\Article.class
+hr\algebra\model\AuthorAddable.class
+hr\algebra\model\BlogType.class
