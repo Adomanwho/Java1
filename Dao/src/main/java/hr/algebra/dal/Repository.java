@@ -5,6 +5,7 @@
 package hr.algebra.dal;
 
 import hr.algebra.model.Article;
+import hr.algebra.model.User;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,7 +14,7 @@ import java.util.Optional;
  * @author daniel.bele
  */
 public interface Repository {
-
+    // article methods
     int createArticle(Article article) throws Exception;
 
     void createArticles(List<Article> articles) throws Exception;
@@ -25,5 +26,14 @@ public interface Repository {
     Optional<Article> selectArticle(int id) throws Exception;
 
     List<Article> selectArticles() throws Exception;
+    
+    
+    
+    //user methods
+    boolean userExists (User user) throws Exception;
+    
+    boolean checkAndRegisterUser (User user) throws Exception;
+    
+    String checkAndLoginUser (User user) throws Exception;
 
 }

@@ -6,6 +6,7 @@ package hr.algebra.dal.sql;
 
 import hr.algebra.dal.Repository;
 import hr.algebra.model.Article;
+import hr.algebra.model.User;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -17,7 +18,7 @@ import java.util.Optional;
 import javax.sql.DataSource;
 
 public class SqlRepository implements Repository {
-
+    //variables for Article
     private static final String ID_ARTICLE = "article_id";
     private static final String TITLE = "title";
     private static final String LINK = "link";
@@ -30,6 +31,17 @@ public class SqlRepository implements Repository {
     private static final String DELETE_ARTICLE = "{ CALL deleteArticle (?) }";
     private static final String SELECT_ARTICLE = "{ CALL selectArticle (?) }";
     private static final String SELECT_ARTICLES = "{ CALL selectArticles }";
+    
+    
+    //variables for User
+    private static final String ID_USER = "user_id";
+    private static final String USERNAME = "username";
+    private static final String PASSWORD = "password";
+    private static final String IS_ADMIN = "isAdmin";
+    
+    private static final String USER_EXISTS = "{ CALL checkUser (?,?) }";
+    private static final String CR_USER = "{ CALL registerUser (?,?,?,?) }"; //CR -> Check and Register
+    private static final String CL_USER = "{ CALL loginUser (?,?,?) }"; // CL -> Chedk and Login
 
     @Override
     public int createArticle(Article article) throws Exception {
@@ -132,5 +144,66 @@ public class SqlRepository implements Repository {
         }
         return articles;
     }
+    
+    
+    
+    //user methods
+    @Override
+    public boolean userExists(User user) throws Exception {
+        DataSource dataSource = DataSourceSingleton.getInstance();
+        try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall(USER_EXISTS)) {
 
+            stmt.setString(USERNAME, user.getUsername());
+            stmt.registerOutParameter(PASSWORD, Types.NVARCHAR);
+
+            stmt.executeUpdate();
+            
+            String returnString = stmt.getString(PASSWORD);
+            // procedura returna password, ako je '' ima length 0
+            
+            return returnString.length() > 0; // true ako password postoji ( > 0), false inace
+        }
+    }
+
+    @Override
+    public boolean checkAndRegisterUser(User user) throws Exception {
+        DataSource dataSource = DataSourceSingleton.getInstance();
+        try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall(CR_USER)) {
+            
+            boolean userAlreadyExists = userExists(user);
+            if(userAlreadyExists) return false; // nije uspijela metoda jer user vec postoji, zato false
+
+            stmt.setString(USERNAME, user.getUsername());
+            stmt.setString(PASSWORD, user.getPassword());
+            stmt.setBoolean(IS_ADMIN, false);
+            stmt.registerOutParameter(ID_USER, Types.INTEGER);
+
+            stmt.executeUpdate();
+            
+            return true;
+        }
+    }
+
+    @Override
+    public String checkAndLoginUser(User user) throws Exception {
+        // bilo je 4 ujutro kad sam radio ovu metodu i fakat se nisam pametnijeg nacina mogo sjetit za return :(
+        DataSource dataSource = DataSourceSingleton.getInstance();
+        try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall(CL_USER)) {
+            
+            boolean userAlreadyExists = userExists(user);
+            if(!userAlreadyExists) return "a"; // nije uspijela metoda jer user ne postoji, zato false
+
+            stmt.setString(USERNAME, user.getUsername());
+            stmt.setString(PASSWORD, user.getPassword());
+            stmt.registerOutParameter(IS_ADMIN, Types.BIT);
+
+            stmt.executeUpdate();
+            
+            boolean userIsAdmin = stmt.getBoolean(IS_ADMIN);
+            
+            if(userIsAdmin) return "b"; // user postoji ali i je admin
+            return "c"; // user postoji ali nije admin
+        }
+    }
+    
 }
