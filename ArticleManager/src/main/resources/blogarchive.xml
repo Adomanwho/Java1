@@ -23,5 +23,20 @@
                 </author>
             </authors>
         </blog>
+        <blog>
+            <title>The secrets of the cosmos</title>
+            <blogtype>SCIENTIFIC</blogtype>
+            <publisheddate>0000-12-12</publisheddate>
+            <authors>
+                <author jmbag="000">
+                    <firstname>Mali</firstname>
+                    <lastname>Medo</lastname>
+                </author>
+                <author jmbag="1337">
+                    <firstname>Andrej</firstname>
+                    <lastname>Kolega</lastname>
+                </author>
+            </authors>
+        </blog>
     </blogs>
 </blogarchive>

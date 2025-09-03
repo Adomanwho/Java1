@@ -10,12 +10,10 @@ import hr.algebra.model.Article;
 import hr.algebra.parsers.rss.ArticleParser;
 import hr.algebra.utilities.MessageUtils;
 import java.awt.EventQueue;
-import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
-import javax.xml.stream.XMLStreamException;
 
 /**
  *

@@ -4,6 +4,7 @@
  */
 package hr.algebra;
 
+import hr.algebra.utilities.FrameUtils;
 import hr.algebra.view.EditArticlesPanel;
 import hr.algebra.view.UploadArticlesPanel;
 
@@ -34,8 +35,36 @@ public class ArticleManager extends javax.swing.JFrame {
     private void initComponents() {
 
         tpContent = new javax.swing.JTabbedPane();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        mniLogout = new javax.swing.JMenuItem();
+        mniExitApp = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jMenu1.setText("App options");
+
+        mniLogout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        mniLogout.setText("Logout");
+        mniLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniLogoutActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mniLogout);
+
+        mniExitApp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        mniExitApp.setText("Exit app");
+        mniExitApp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniExitAppActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mniExitApp);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -45,12 +74,20 @@ public class ArticleManager extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tpContent, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
+            .addComponent(tpContent, javax.swing.GroupLayout.DEFAULT_SIZE, 757, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void mniLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniLogoutActionPerformed
+        FrameUtils.openFrame(new LoginFrame(), this);
+    }//GEN-LAST:event_mniLogoutActionPerformed
+
+    private void mniExitAppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniExitAppActionPerformed
+        dispose();
+    }//GEN-LAST:event_mniExitAppActionPerformed
 
     /**
      * @param args the command line arguments
@@ -88,6 +125,10 @@ public class ArticleManager extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem mniExitApp;
+    private javax.swing.JMenuItem mniLogout;
     private javax.swing.JTabbedPane tpContent;
     // End of variables declaration//GEN-END:variables
 

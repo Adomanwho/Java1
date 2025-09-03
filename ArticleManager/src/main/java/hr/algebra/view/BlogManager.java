@@ -5,12 +5,14 @@
  */
 package hr.algebra.view;
 
+import hr.algebra.LoginFrame;
 import hr.algebra.model.AuthorTransferable;
 import hr.algebra.model.Author;
 import hr.algebra.model.AuthorAddable;
 import hr.algebra.model.Blog;
 import hr.algebra.model.BlogArchive;
 import hr.algebra.model.BlogType;
+import hr.algebra.utilities.FrameUtils;
 import hr.algebra.utilities.JAXBUtils;
 import hr.algebra.utilities.MessageUtils;
 import java.awt.datatransfer.Transferable;
@@ -90,6 +92,10 @@ public class BlogManager extends javax.swing.JFrame implements AuthorAddable{
         cbBlogTypes = new javax.swing.JComboBox<>();
         lbPublishedDateError = new javax.swing.JLabel();
         lbAuthorsError = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        mniLogout = new javax.swing.JMenuItem();
+        mniExitApp = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Blogs");
@@ -151,6 +157,30 @@ public class BlogManager extends javax.swing.JFrame implements AuthorAddable{
 
         lbAuthorsError.setForeground(new java.awt.Color(255, 0, 0));
         lbAuthorsError.setText("X");
+
+        jMenu1.setText("App options");
+
+        mniLogout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        mniLogout.setText("Logout");
+        mniLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniLogoutActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mniLogout);
+
+        mniExitApp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        mniExitApp.setText("Exit app");
+        mniExitApp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniExitAppActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mniExitApp);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -238,7 +268,7 @@ public class BlogManager extends javax.swing.JFrame implements AuthorAddable{
                                 .addComponent(btnAddBlog, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnRefreshBlogs, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 4, Short.MAX_VALUE))
+                                .addGap(0, 11, Short.MAX_VALUE))
                             .addComponent(jScrollPane2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -281,6 +311,14 @@ public class BlogManager extends javax.swing.JFrame implements AuthorAddable{
             Logger.getLogger(BlogManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnSaveBlogsActionPerformed
+
+    private void mniLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniLogoutActionPerformed
+        FrameUtils.openFrame(new LoginFrame(), this);
+    }//GEN-LAST:event_mniLogoutActionPerformed
+
+    private void mniExitAppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniExitAppActionPerformed
+        dispose();
+    }//GEN-LAST:event_mniExitAppActionPerformed
 
     /**
      * @param args the command line arguments
@@ -332,6 +370,8 @@ public class BlogManager extends javax.swing.JFrame implements AuthorAddable{
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -341,6 +381,8 @@ public class BlogManager extends javax.swing.JFrame implements AuthorAddable{
     private javax.swing.JList<Author> lsAllAuthors;
     private javax.swing.JList<Author> lsAuthors;
     private javax.swing.JList<Blog> lsBlogs;
+    private javax.swing.JMenuItem mniExitApp;
+    private javax.swing.JMenuItem mniLogout;
     private javax.swing.JTextField tfPublishedDate;
     private javax.swing.JTextField tfTitle;
     // End of variables declaration//GEN-END:variables

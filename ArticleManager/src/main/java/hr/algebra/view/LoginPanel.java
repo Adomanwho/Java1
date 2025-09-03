@@ -8,6 +8,7 @@ import hr.algebra.ArticleManager;
 import hr.algebra.dal.Repository;
 import hr.algebra.dal.RepositoryFactory;
 import hr.algebra.model.User;
+import hr.algebra.utilities.FrameUtils;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
@@ -111,7 +112,6 @@ public class LoginPanel extends javax.swing.JPanel {
         if(!checkedForm){
             return;
         }
-        System.out.println("Proslo kroz validate nekako?");
         repository = RepositoryFactory.getRepository();
         
         username = username.trim();
@@ -152,11 +152,11 @@ public class LoginPanel extends javax.swing.JPanel {
                     return;
                 }
                 case "b" -> {
-                    openFrame(new ArticleManager());
+                    FrameUtils.openFrame(new ArticleManager(), (JFrame) SwingUtilities.getWindowAncestor(this));
                     return;
                 }
                 case "c" -> {
-                    openFrame(new BlogManager());
+                    FrameUtils.openFrame(new BlogManager(), (JFrame) SwingUtilities.getWindowAncestor(this));
                     return;
                 }
             }
@@ -194,13 +194,4 @@ public class LoginPanel extends javax.swing.JPanel {
         }
         return true;
     }
-
-    
-    private void openFrame(JFrame newFrame) {
-        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-
-        currentFrame.dispose();
-        newFrame.setVisible(true);
-    }
-    
 }

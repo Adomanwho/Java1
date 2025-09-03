@@ -3,6 +3,7 @@ hr\algebra\view\EditArticlesPanel$7.class
 hr\algebra\view\EditArticlesPanel.class
 hr\algebra\parsers\rss\ArticleParser.class
 hr\algebra\view\BlogManager$3.class
+hr\algebra\ArticleManager$3.class
 hr\algebra\view\BlogManager$ExportTransferHandler.class
 hr\algebra\parsers\rss\ArticleParser$1.class
 hr\algebra\view\EditArticlesPanel$2.class
@@ -13,6 +14,7 @@ hr\algebra\view\BlogManager$ImportTransferHandler.class
 hr\algebra\ArticleManager$1.class
 hr\algebra\view\BlogManager$1.class
 hr\algebra\view\UploadArticlesPanel.class
+hr\algebra\view\BlogManager$6.class
 hr\algebra\LoginFrame$1.class
 hr\algebra\view\EditArticlesPanel$1.class
 hr\algebra\view\BlogManager$2.class
@@ -28,5 +30,7 @@ hr\algebra\ArticleManager.class
 hr\algebra\view\UploadArticlesPanel$1.class
 hr\algebra\view\EditArticlesPanel$3.class
 hr\algebra\view\BlogManager$5.class
+hr\algebra\view\BlogManager$7.class
 hr\algebra\view\LoginPanel$1.class
 hr\algebra\view\EditArticlesPanel$5.class
+hr\algebra\ArticleManager$2.class
