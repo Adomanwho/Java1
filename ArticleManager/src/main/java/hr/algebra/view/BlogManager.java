@@ -313,7 +313,11 @@ public class BlogManager extends javax.swing.JFrame implements AuthorAddable{
     }//GEN-LAST:event_btnSaveBlogsActionPerformed
 
     private void mniLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniLogoutActionPerformed
-        FrameUtils.openFrame(new LoginFrame(), this);
+        try {
+            FrameUtils.openFrame(new LoginFrame(), this);
+        } catch (Exception ex) {
+            Logger.getLogger(BlogManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_mniLogoutActionPerformed
 
     private void mniExitAppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniExitAppActionPerformed

@@ -7,6 +7,8 @@ package hr.algebra;
 import hr.algebra.utilities.FrameUtils;
 import hr.algebra.view.EditArticlesPanel;
 import hr.algebra.view.UploadArticlesPanel;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -82,7 +84,11 @@ public class ArticleManager extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mniLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniLogoutActionPerformed
-        FrameUtils.openFrame(new LoginFrame(), this);
+        try {
+            FrameUtils.openFrame(new LoginFrame(), this);
+        } catch (Exception ex) {
+            Logger.getLogger(ArticleManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_mniLogoutActionPerformed
 
     private void mniExitAppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniExitAppActionPerformed

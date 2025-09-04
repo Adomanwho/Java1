@@ -35,5 +35,7 @@ public interface Repository {
     boolean checkAndRegisterUser (User user) throws Exception;
     
     String checkAndLoginUser (User user) throws Exception;
+    
+    void checkAdmin () throws Exception;
 
 }

@@ -27,7 +27,9 @@ public class LoginPanel extends javax.swing.JPanel {
     /**
      * Creates new form LoginPanel
      */
-    public LoginPanel() {
+    public LoginPanel() throws Exception {
+        repository = RepositoryFactory.getRepository();
+        repository.checkAdmin();
         initComponents();
     }
 
@@ -111,8 +113,7 @@ public class LoginPanel extends javax.swing.JPanel {
         boolean checkedForm = checkForm(username, password);
         if(!checkedForm){
             return;
-        }
-        repository = RepositoryFactory.getRepository();
+        }    
         
         username = username.trim();
         password = password.trim();
@@ -140,7 +141,6 @@ public class LoginPanel extends javax.swing.JPanel {
         if(!checkedForm){
             return;
         }
-        repository = RepositoryFactory.getRepository();
         
         User user = new User(username, password, false);
         

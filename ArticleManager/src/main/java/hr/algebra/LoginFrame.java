@@ -5,6 +5,8 @@
 package hr.algebra;
 
 import hr.algebra.view.LoginPanel;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 /**
@@ -16,7 +18,7 @@ public class LoginFrame extends javax.swing.JFrame {
     /**
      * Creates new form LoginFrame
      */
-    public LoginFrame() {
+    public LoginFrame() throws Exception {
         initComponents();
         init();
     }
@@ -76,7 +78,11 @@ public class LoginFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginFrame().setVisible(true);
+                try {
+                    new LoginFrame().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(LoginFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -84,7 +90,7 @@ public class LoginFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 
-    private void init() {
+    private void init() throws Exception {
         setTitle("Login");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

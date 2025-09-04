@@ -42,6 +42,7 @@ public class SqlRepository implements Repository {
     private static final String USER_EXISTS = "{ CALL checkUser (?,?) }";
     private static final String CR_USER = "{ CALL registerUser (?,?,?,?) }"; //CR -> Check and Register
     private static final String CL_USER = "{ CALL loginUser (?,?,?) }"; // CL -> Chedk and Login
+    private static final String CHECK_ADMIN = "{ CALL checkAdmin }";
 
     @Override
     public int createArticle(Article article) throws Exception {
@@ -175,7 +176,7 @@ public class SqlRepository implements Repository {
 
             stmt.setString(USERNAME, user.getUsername());
             stmt.setString(PASSWORD, user.getPassword());
-            stmt.setBoolean(IS_ADMIN, false);
+            stmt.setBoolean(IS_ADMIN, user.getIsAdmin());
             stmt.registerOutParameter(ID_USER, Types.INTEGER);
 
             stmt.executeUpdate();
@@ -203,6 +204,14 @@ public class SqlRepository implements Repository {
             
             if(userIsAdmin) return "b"; // user postoji ali i je admin
             return "c"; // user postoji ali nije admin
+        }
+    }
+
+    @Override
+    public void checkAdmin() throws Exception {
+        DataSource dataSource = DataSourceSingleton.getInstance();
+        try (Connection con = dataSource.getConnection(); CallableStatement stmt = con.prepareCall(CHECK_ADMIN)) {
+            stmt.executeUpdate();
         }
     }
     
